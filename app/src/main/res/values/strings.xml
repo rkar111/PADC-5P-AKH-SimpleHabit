@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PADC-5P-AKH-SimpleHabit</string>
+    <string name="action_settings">Settings</string>
+    <string name="starthere">Start Here</string>
+    <string name="simplehabitstarter">Simple Habit Starter</string>
+    <string name="start">Start</string>
+    <string name="eveningmeditation">Evening Meditation</string>
+    <string name="sleepbetter">Sleep Better</string>
+    <string name="healthymind">A Healthy Mind</string>
+    <string name="calmnerve">Calm Nerves</string>
+    <string name="newonsh">New on Simple Habit</string>
+    <string name="tofindhappiness">To Find Happiness</string>
+    <string name="popular">Most Popular</string>
+    <string name="alltopic">All Topics</string>
+    <string name="time">5 mins</string>
+    <string name="mindful_sleep">Mindful Sleep</string>
+    <string name="meditation_series">Meditation Series</string>
+</resources>
