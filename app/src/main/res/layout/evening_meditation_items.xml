@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/yogabeach"
+                android:src="@drawable/leaves"
                 android:tint="@color/tint_black"/>
 
             <ImageView
@@ -57,7 +57,7 @@
         android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginLeft="@dimen/margin_medium"
         android:text="@string/time"
-        android:textColor="@color/all_white" />
+        android:textColor="@color/secondary_text" />
 
 
 </RelativeLayout>

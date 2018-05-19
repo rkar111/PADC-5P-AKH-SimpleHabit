@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#474c56</color>
+    <color name="primary">#272a2f</color>
 
-    <color name="primary_dark">#2b2f3a</color>
+    <color name="primary_dark">#10141d</color>
 
     <color name="primary_light">#C5CAE9</color>
 
@@ -18,7 +18,7 @@
 
     <color name="indigo">#1a237e</color>
 
-    <color name="bgblackish">#171620</color>
+    <color name="bgblackish">#0d0d16</color>
 
     <color name="all_white">#ffffff</color>
 
