@@ -34,4 +34,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="starthere_image_size">300dp</dimen>
     <dimen name="card_picture_size">180dp</dimen>
+    <dimen name="topic_card_size">140dp</dimen>
 </resources>

@@ -22,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sunsetrelax" />
+                android:src="@drawable/sunsetrelax"
+                android:tint="@color/tint_black"/>
 
             <ImageView
                 android:id="@+id/btn_add_healthy_mind"
@@ -52,7 +53,8 @@
         android:id="@+id/healthy_mind_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_meditation_name"
+        android:layout_below="@id/tv_healthy_mind"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginLeft="@dimen/margin_medium"
         android:text="@string/time"
         android:textColor="@color/all_white" />

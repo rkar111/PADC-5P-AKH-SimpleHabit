@@ -23,4 +23,5 @@
     <color name="all_white">#ffffff</color>
 
     <color name="all_black">#000000</color>
+    <color name="tint_black">#6F000000</color>
 </resources>

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.arkarhein.padc_5p_akh_simplehabit.R;
+import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.AllTopicItemsAdapter;
 import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.EveningMeditationItemAdapter;
 import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.HealthyMindItemAdapter;
 
@@ -28,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rv_healthy_mind)
     RecyclerView rvHealthyMind;
 
+    @BindView(R.id.rv_all_topic)
+    RecyclerView rvAllTopic;
+
     private EveningMeditationItemAdapter mEveningMeditationItemAdapter = new EveningMeditationItemAdapter();
     private HealthyMindItemAdapter mHealthyMindItemAdapter = new HealthyMindItemAdapter();
+    private AllTopicItemsAdapter mAllTopicItemsAdapter = new AllTopicItemsAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL, false);
         rvHealthyMind.setAdapter(mHealthyMindItemAdapter);
         rvHealthyMind.setLayoutManager(linearLayoutManagerHealthyMind);
+
+        LinearLayoutManager linearLayoutManagerAllTopic = new LinearLayoutManager(getApplicationContext(),
+                LinearLayoutManager.VERTICAL, false);
+        rvAllTopic.setAdapter(mAllTopicItemsAdapter);
+        rvAllTopic.setLayoutManager(linearLayoutManagerAllTopic);
 
 
     }
