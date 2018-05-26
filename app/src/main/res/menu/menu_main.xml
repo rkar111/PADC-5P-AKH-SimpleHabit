@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="xyz.arkarhein.padc_5p_akh_simplehabit.activities.MainActivity">
+    tools:context="xyz.arkarhein.padc_5p_akh_simplehabit.activities.SeriesActivity">
 
 </menu>

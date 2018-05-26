@@ -1,25 +1,27 @@
 package xyz.arkarhein.padc_5p_akh_simplehabit.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.arkarhein.padc_5p_akh_simplehabit.R;
-import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.AllTopicItemsAdapter;
 import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.BaseViewAdapter;
-import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.EveningMeditationItemAdapter;
-import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.HealthyMindItemAdapter;
+import xyz.arkarhein.padc_5p_akh_simplehabit.data.HomeScreenVO;
+import xyz.arkarhein.padc_5p_akh_simplehabit.data.models.SimpleHabitsModel;
+import xyz.arkarhein.padc_5p_akh_simplehabit.events.RestApiEvent;
+import xyz.arkarhein.padc_5p_akh_simplehabit.events.SuccessEvent;
 
-public class MainActivity extends AppCompatActivity {
+public class SeriesActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rv_item_view)
     RecyclerView rvItemView;
 
-    private BaseViewAdapter mBaseViewAdapter = new BaseViewAdapter();
+    private BaseViewAdapter mBaseViewAdapter;
 
 
     @Override
@@ -41,12 +43,25 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Meditate Series");
         }
 
+        mBaseViewAdapter = new BaseViewAdapter(getApplicationContext());
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext()
                 , LinearLayoutManager.VERTICAL, false);
         rvItemView.setAdapter(mBaseViewAdapter);
         rvItemView.setLayoutManager(linearLayoutManager);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -65,5 +80,16 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         return super.onOptionsItemSelected(item);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onDataLoaded(SuccessEvent event) {
+        mBaseViewAdapter.setNewData(event.getmData());
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onErrorInvokingAPI(RestApiEvent.ErrorInvokingAPIEvent event) {
+        Snackbar.make(rvItemView, event.getErrorMessage(), Snackbar.LENGTH_INDEFINITE).show();
     }
 }
