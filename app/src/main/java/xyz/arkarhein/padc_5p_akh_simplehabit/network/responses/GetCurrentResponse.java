@@ -16,9 +16,6 @@ public class GetCurrentResponse {
     @SerializedName("apiVersion")
     private String apiVersion;
 
-    @SerializedName("page")
-    private String page;
-
     @SerializedName("currentProgram")
     private CurrentVO currentProgram;
 
@@ -32,10 +29,6 @@ public class GetCurrentResponse {
 
     public String getApiVersion() {
         return apiVersion;
-    }
-
-    public String getPage() {
-        return page;
     }
 
     public CurrentVO getCurrentProgram() {

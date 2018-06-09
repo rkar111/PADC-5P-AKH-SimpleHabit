@@ -24,4 +24,5 @@
 
     <color name="all_black">#000000</color>
     <color name="tint_black">#6F000000</color>
+    <color name="all_yellow">#FFFF00</color>
 </resources>

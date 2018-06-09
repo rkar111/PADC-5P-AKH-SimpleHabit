@@ -29,4 +29,8 @@ public class TopicItemsViewHolder extends BaseViewHolder<TopicsVO> {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

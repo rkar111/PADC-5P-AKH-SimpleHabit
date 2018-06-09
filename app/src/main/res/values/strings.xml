@@ -17,4 +17,17 @@
     <string name="meditation_series">Meditation Series</string>
     <string name="well_being">Well-Being</string>
     <string name="topic_desc">Inspire joy, abundance, and purpose</string>
+    <string name="meditate">Meditate</string>
+    <string name="more">More</string>
+    <string name="me">Me</string>
+    <string name="lemon">Lemon</string>
+    <string name="download">Download</string>
+    <string name="item_detail">Quick 5 minute meditation after work, when you just got home.</string>
+    <string name="read_more">READ MORE</string>
+    <string name="sessions">Sessions</string>
+    <string name="one">1</string>
+    <string name="introducing_mindfulness">Introducing Mindfulness</string>
+    <string name="session_period">5:33</string>
+    <string name="on_the_go">On The Go</string>
+    <string name="teachers">Teachers</string>
 </resources>

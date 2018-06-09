@@ -35,4 +35,6 @@
     <dimen name="starthere_image_size">300dp</dimen>
     <dimen name="card_picture_size">180dp</dimen>
     <dimen name="topic_card_size">120dp</dimen>
+    <dimen name="collapsing_toolbar_size">220dp</dimen>
+    <dimen name="item_detail_download_position">36dp</dimen>
 </resources>

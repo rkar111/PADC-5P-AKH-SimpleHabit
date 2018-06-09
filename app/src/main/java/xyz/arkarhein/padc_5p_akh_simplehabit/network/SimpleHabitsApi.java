@@ -16,7 +16,7 @@ public interface SimpleHabitsApi {
                                       @Field("access_token") String accessToken);
 
     @FormUrlEncoded
-    @POST("getCategoriesPrograms.php")
+    @POST("getCurrentProgram.php")
     Call<GetCurrentResponse> getCurrent(@Field("page") int page,
                                         @Field("access_token") String accessToken);
 

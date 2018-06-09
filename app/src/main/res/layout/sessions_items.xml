@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_session_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium_2"
+        android:text="@string/one"
+        android:textColor="@color/all_white" />
+
+    <TextView
+        android:id="@+id/tv_session_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_session_number"
+        android:layout_toRightOf="@id/tv_session_number"
+        android:text="@string/introducing_mindfulness"
+        android:textColor="@color/all_white" />
+
+    <TextView
+        android:id="@+id/tv_session_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/margin_medium_2"
+        android:text="@string/session_period"
+        android:textColor="@color/all_white" />
+
+</RelativeLayout>

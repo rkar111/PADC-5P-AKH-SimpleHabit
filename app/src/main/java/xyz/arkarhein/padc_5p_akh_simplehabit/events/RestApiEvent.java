@@ -25,14 +25,14 @@ public class RestApiEvent {
     }
 
     public static class CurrentDataLoadedEvent {
-        private CurrentVO currentList;
+        private CurrentVO current;
 
-        public CurrentDataLoadedEvent(CurrentVO currentList) {
-            this.currentList = currentList;
+        public CurrentDataLoadedEvent(CurrentVO current) {
+            this.current = current;
         }
 
-        public CurrentVO getCurrentList() {
-            return currentList;
+        public CurrentVO getCurrent() {
+            return current;
         }
     }
 

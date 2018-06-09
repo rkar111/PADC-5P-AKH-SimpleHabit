@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgblackish">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/collapsing_toolbar_size"
+            app:contentScrim="@color/primary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/iv_simple_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sunsetrelax" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_item_detail_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/lemon"
+                    android:textColor="@color/all_white"
+                    android:textSize="@dimen/text_heading_1x" />
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/item_details_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorite_news"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_play_arrow_24dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|right" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:paddingBottom="@dimen/margin_medium_2"
+            android:paddingTop="@dimen/margin_xxlarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:text="@string/download"
+                android:textColor="@color/all_white"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_medium_2" />
+
+        </RelativeLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bgblackish">
+
+                <TextView
+                    android:id="@+id/tv_item_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:padding="@dimen/margin_medium_2"
+                    android:text="@string/item_detail"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <TextView
+                    android:id="@+id/tv_read_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_item_detail"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/read_more"
+                    android:textColor="@color/accent" />
+
+                <TextView
+                    android:id="@+id/tv_sessions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_read_more"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:text="@string/sessions"
+                    android:textColor="@color/all_white"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_sessions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_sessions"
+                    android:paddingBottom="@dimen/margin_large" />
+
+            </RelativeLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
