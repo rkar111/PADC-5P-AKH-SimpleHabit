@@ -10,13 +10,13 @@ import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CategoryDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CurrentProgramDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.events.RestApiEvent;
 import xyz.arkarhein.padc_5p_akh_simplehabit.events.SuccessEvent;
-import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.SeriesView;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.HomeScreenView;
 
-public class SeriesPresenter extends BasePresenter<SeriesView> implements CurrentProgramDelegate, CategoryDelegate {
+public class HomeScreenPresenter extends BasePresenter<HomeScreenView> implements CurrentProgramDelegate, CategoryDelegate {
 
 
 
-    public SeriesPresenter(SeriesView mView) {
+    public HomeScreenPresenter(HomeScreenView mView) {
         super(mView);
     }
 

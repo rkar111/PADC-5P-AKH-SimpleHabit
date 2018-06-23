@@ -5,7 +5,7 @@ import java.util.List;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.HomeScreenVO;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.ProgramVO;
 
-public interface SeriesView extends BaseView {
+public interface HomeScreenView extends BaseView {
 
     void displaySessionList(List<HomeScreenVO> mData);
 
