@@ -1,6 +1,7 @@
 package xyz.arkarhein.padc_5p_akh_simplehabit.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,34 +17,44 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.arkarhein.padc_5p_akh_simplehabit.R;
+import xyz.arkarhein.padc_5p_akh_simplehabit.activities.ItemDetailsActivity;
 import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.BaseViewAdapter;
+import xyz.arkarhein.padc_5p_akh_simplehabit.data.HomeScreenVO;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.models.SimpleHabitsModel;
 import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CategoryDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CurrentProgramDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.events.RestApiEvent;
 import xyz.arkarhein.padc_5p_akh_simplehabit.events.SuccessEvent;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.presenters.SeriesPresenter;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.SeriesView;
 
-public class SeriesFragment extends Fragment {
+public class SeriesFragment extends Fragment implements SeriesView {
 
     @BindView(R.id.rv_item_view)
     RecyclerView rvItemView;
 
     private BaseViewAdapter mBaseViewAdapter;
+    private SeriesPresenter mSeriesPresenter;
 
-    private CurrentProgramDelegate mCurrentProgramDelegate;
-
-    private CategoryDelegate mCategoryDelegate;
+    private CurrentProgramDelegate currentProgramDelegate;
+    private CategoryDelegate categoryDelegate;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_series, container, false);
         ButterKnife.bind(this, view);
+        mSeriesPresenter = new SeriesPresenter(this);
+        mSeriesPresenter.onCreate();
+        currentProgramDelegate = mSeriesPresenter;
+        categoryDelegate = mSeriesPresenter;
 
-        mBaseViewAdapter = new BaseViewAdapter(getContext(), mCurrentProgramDelegate, mCategoryDelegate);
+        mBaseViewAdapter = new BaseViewAdapter(getContext(), currentProgramDelegate, categoryDelegate);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()
                 , LinearLayoutManager.VERTICAL, false);
@@ -57,30 +68,39 @@ public class SeriesFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mCurrentProgramDelegate = (CurrentProgramDelegate) context;
-        mCategoryDelegate = (CategoryDelegate) context;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        mSeriesPresenter.onStart();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
+        mSeriesPresenter.onStop();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onDataLoaded(SuccessEvent event) {
-        mBaseViewAdapter.setNewData(event.getmData());
+    @Override
+    public void displayErrorMsg(String errorMsg) {
+        Snackbar.make(rvItemView, errorMsg, Snackbar.LENGTH_INDEFINITE).show();
     }
 
+    @Override
+    public void displaySessionList(List<HomeScreenVO> mData) {
+        mBaseViewAdapter.setNewData(mData);
+    }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onErrorInvokingAPI(RestApiEvent.ErrorInvokingAPIEvent event) {
-        Snackbar.make(rvItemView, event.getErrorMessage(), Snackbar.LENGTH_INDEFINITE).show();
+    @Override
+    public void lauchCurrentProgram(String programId) {
+        Intent intent = ItemDetailsActivity.newIntentCurrentProgram(getContext());
+        startActivity(intent);
+    }
+
+    @Override
+    public void lauchSessionList(String programId, String categoryId) {
+        Intent intent = ItemDetailsActivity.newIntentCategoryProgram(getContext(), categoryId, categoryId);
+        startActivity(intent);
     }
 }

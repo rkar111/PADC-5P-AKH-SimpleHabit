@@ -27,6 +27,7 @@ public class CurrentViewHolder extends BaseViewHolder<CurrentVO> {
     RelativeLayout rlCurrent;
 
     private CurrentProgramDelegate mCurrentProgramDelegate;
+    private CurrentVO currentVO;
 
     public CurrentViewHolder(View itemView, CurrentProgramDelegate delegate) {
         super(itemView);
@@ -39,11 +40,12 @@ public class CurrentViewHolder extends BaseViewHolder<CurrentVO> {
 
     @Override
     public void onClick(View view) {
-        mCurrentProgramDelegate.onTapCurrentProgram();
+        mCurrentProgramDelegate.onTapCurrentProgram(currentVO);
     }
 
     @Override
     public void setData(CurrentVO data) {
+        currentVO = data;
         tvSimpleHabit.setText(data.getTitle());
         btnStart.setText(data.getCurrentPeriod());
 

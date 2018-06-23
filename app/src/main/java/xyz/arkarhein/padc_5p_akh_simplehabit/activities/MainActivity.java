@@ -17,8 +17,10 @@ import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CurrentProgramDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.fragments.OnTheGoFragment;
 import xyz.arkarhein.padc_5p_akh_simplehabit.fragments.SeriesFragment;
 import xyz.arkarhein.padc_5p_akh_simplehabit.fragments.TeachersFragment;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.presenters.MainPresenter;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.MainView;
 
-public class MainActivity extends BaseActivity implements CurrentProgramDelegate, CategoryDelegate {
+public class MainActivity extends BaseActivity implements MainView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -30,12 +32,15 @@ public class MainActivity extends BaseActivity implements CurrentProgramDelegate
     ViewPager viewPager;
 
     ItemAdapter itemAdapter;
+    private MainPresenter mMainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this, this);
+        mMainPresenter = new MainPresenter(this);
+        mMainPresenter.onCreate();
 
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -70,14 +75,7 @@ public class MainActivity extends BaseActivity implements CurrentProgramDelegate
     }
 
     @Override
-    public void onTapCurrentProgram() {
-        Intent intent = ItemDetailsActivity.newIntentCurrentProgram(getApplicationContext());
-        startActivity(intent);
-    }
+    public void displayErrorMsg(String errorMsg) {
 
-    @Override
-    public void onTapCategory(String categoryId, String categoryProgramId) {
-        Intent intent = ItemDetailsActivity.newIntentCategoryProgram(getApplicationContext(), categoryId, categoryProgramId);
-        startActivity(intent);
     }
 }

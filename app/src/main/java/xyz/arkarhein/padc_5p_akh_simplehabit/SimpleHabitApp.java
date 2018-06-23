@@ -17,6 +17,5 @@ public class SimpleHabitApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SimpleHabitsModel.getsObjInstance().loadData();
     }
 }

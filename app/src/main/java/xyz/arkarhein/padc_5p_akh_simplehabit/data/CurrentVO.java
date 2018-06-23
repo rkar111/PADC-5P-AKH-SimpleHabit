@@ -1,11 +1,19 @@
 package xyz.arkarhein.padc_5p_akh_simplehabit.data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Entity(tableName = "Current")
 public class CurrentVO implements HomeScreenVO {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("program-id")
     private String programId;
 
@@ -24,6 +32,7 @@ public class CurrentVO implements HomeScreenVO {
     @SerializedName("description")
     private String description;
 
+    @Ignore
     @SerializedName("sessions")
     private List<SessionsVO> sessions;
 
