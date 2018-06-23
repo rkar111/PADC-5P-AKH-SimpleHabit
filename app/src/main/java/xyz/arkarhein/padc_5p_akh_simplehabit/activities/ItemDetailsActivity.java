@@ -18,8 +18,10 @@ import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.SessionItemAdapter;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.CurrentVO;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.ProgramVO;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.models.SimpleHabitsModel;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.presenters.ItemDetailsPresenter;
+import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.ItemDetailsView;
 
-public class ItemDetailsActivity extends BaseActivity {
+public class ItemDetailsActivity extends BaseActivity implements ItemDetailsView {
 
     @BindView(R.id.item_details_toolbar)
     Toolbar toolbar;
@@ -35,6 +37,11 @@ public class ItemDetailsActivity extends BaseActivity {
 
 
     private SessionItemAdapter mSessionItemAdapter;
+
+    private ItemDetailsPresenter mPresenter;
+
+    private CurrentVO currentVO;
+    private ProgramVO programVO;
 
     public static Intent newIntentCurrentProgram(Context context) {
         Intent intent = new Intent(context, ItemDetailsActivity.class);
@@ -55,6 +62,8 @@ public class ItemDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
         ButterKnife.bind(this, this);
+        mPresenter = new ItemDetailsPresenter(this);
+        mPresenter.onCreate();
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -75,23 +84,33 @@ public class ItemDetailsActivity extends BaseActivity {
 
 
         if (getIntent().getStringExtra(SimpleHabitApp.VIEW_TYPE).equals(SimpleHabitApp.CURRENT_PROGRAM)) {
-            CurrentVO currentProgram = SimpleHabitsModel.getsObjInstance().getCurrentProgram();
-            mSessionItemAdapter.setNewData(currentProgram.getSessions());
-            tvItemDetailHeading.setText(currentProgram.getTitle());
-            tvItemDetail.setText(currentProgram.getDescription());
-
+            String currentId = getIntent().getStringExtra(SimpleHabitApp.PROGRAM_ID);
+            mPresenter.onFinishCurrentUIComponent(currentId, currentVO);
 
         } else if (getIntent().getStringExtra(SimpleHabitApp.VIEW_TYPE).equals(SimpleHabitApp.CATEGORY)) {
             String categoryId = getIntent().getStringExtra(SimpleHabitApp.CATEGORY_ID);
             String categoryProgramId = getIntent().getStringExtra(SimpleHabitApp.CATEGORY_PROGRAM_ID);
-
-            ProgramVO categoryProgram = SimpleHabitsModel.getsObjInstance().getProgram(categoryId, categoryProgramId);
-            mSessionItemAdapter.setNewData(categoryProgram.getSessions());
-            tvItemDetailHeading.setText(categoryProgram.getTitle());
-            tvItemDetail.setText(categoryProgram.getDescription());
+            mPresenter.onFinishCategoryUIComponent(categoryId, categoryProgramId, programVO);
         }
 
     }
 
 
+    @Override
+    public void displayCurrentDetail(String currentId, CurrentVO currentVO) {
+        mSessionItemAdapter.setNewData(currentVO.getSessions());
+        tvItemDetailHeading.setText(currentVO.getTitle());
+        tvItemDetail.setText(currentVO.getDescription());
+    }
+
+    @Override
+    public void displayCategoryDetail(String categoryId, String programId, ProgramVO program) {
+        mSessionItemAdapter.setNewData(program.getSessions());
+        tvItemDetailHeading.setText(program.getTitle());
+        tvItemDetail.setText(program.getDescription());
+    }
+
+    @Override
+    public void displayErrorMsg(String errorMsg) {
+    }
 }

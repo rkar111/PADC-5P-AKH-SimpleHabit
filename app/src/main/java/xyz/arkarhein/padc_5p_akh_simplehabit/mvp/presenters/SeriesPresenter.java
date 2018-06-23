@@ -14,6 +14,8 @@ import xyz.arkarhein.padc_5p_akh_simplehabit.mvp.views.SeriesView;
 
 public class SeriesPresenter extends BasePresenter<SeriesView> implements CurrentProgramDelegate, CategoryDelegate {
 
+
+
     public SeriesPresenter(SeriesView mView) {
         super(mView);
     }
@@ -56,11 +58,11 @@ public class SeriesPresenter extends BasePresenter<SeriesView> implements Curren
 
     @Override
     public void onTapCategory(String categoryId, String categoryProgramId) {
-        mView.lauchSessionList(categoryId, categoryProgramId);
+        mView.launchCategory(categoryId, categoryProgramId);
     }
 
     @Override
     public void onTapCurrentProgram(CurrentVO currentVO) {
-        mView.lauchCurrentProgram(currentVO.getProgramId());
+        mView.launchCurrent(currentVO.getProgramId());
     }
 }

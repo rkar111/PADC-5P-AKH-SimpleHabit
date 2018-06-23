@@ -25,6 +25,7 @@ import xyz.arkarhein.padc_5p_akh_simplehabit.R;
 import xyz.arkarhein.padc_5p_akh_simplehabit.activities.ItemDetailsActivity;
 import xyz.arkarhein.padc_5p_akh_simplehabit.adapters.BaseViewAdapter;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.HomeScreenVO;
+import xyz.arkarhein.padc_5p_akh_simplehabit.data.ProgramVO;
 import xyz.arkarhein.padc_5p_akh_simplehabit.data.models.SimpleHabitsModel;
 import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CategoryDelegate;
 import xyz.arkarhein.padc_5p_akh_simplehabit.delegates.CurrentProgramDelegate;
@@ -41,8 +42,10 @@ public class SeriesFragment extends Fragment implements SeriesView {
     private BaseViewAdapter mBaseViewAdapter;
     private SeriesPresenter mSeriesPresenter;
 
+
     private CurrentProgramDelegate currentProgramDelegate;
     private CategoryDelegate categoryDelegate;
+
 
     @Nullable
     @Override
@@ -51,10 +54,9 @@ public class SeriesFragment extends Fragment implements SeriesView {
         ButterKnife.bind(this, view);
         mSeriesPresenter = new SeriesPresenter(this);
         mSeriesPresenter.onCreate();
-        currentProgramDelegate = mSeriesPresenter;
-        categoryDelegate = mSeriesPresenter;
 
-        mBaseViewAdapter = new BaseViewAdapter(getContext(), currentProgramDelegate, categoryDelegate);
+
+        mBaseViewAdapter = new BaseViewAdapter(getContext(), mSeriesPresenter,mSeriesPresenter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()
                 , LinearLayoutManager.VERTICAL, false);
@@ -93,14 +95,14 @@ public class SeriesFragment extends Fragment implements SeriesView {
     }
 
     @Override
-    public void lauchCurrentProgram(String programId) {
+    public void launchCurrent(String programId) {
         Intent intent = ItemDetailsActivity.newIntentCurrentProgram(getContext());
         startActivity(intent);
     }
 
     @Override
-    public void lauchSessionList(String programId, String categoryId) {
-        Intent intent = ItemDetailsActivity.newIntentCategoryProgram(getContext(), categoryId, categoryId);
+    public void launchCategory(String programId, String categoryId) {
+        Intent intent = ItemDetailsActivity.newIntentCategoryProgram(getContext(), programId, categoryId);
         startActivity(intent);
     }
 }
